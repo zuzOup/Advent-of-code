@@ -137,7 +137,3 @@ function tailVisits2() {
 }
 
 tailVisits2();
-/*const field= tailVisits2()
-
-const fieldMerge = field7.flat();
-const sum = fieldMerge.reduce((acc, cur) => acc + cur, 0);*/
