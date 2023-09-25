@@ -109,8 +109,6 @@ function tailVisits2() {
             knotsX[j]--; //move up-left
             knotsY[j]--;
           }
-
-          
         }
       }
       field[knotsY[9]][knotsX[9]] = "*";
@@ -133,7 +131,6 @@ function tailVisits2() {
       }
     }
   }
-  
 }
 
 tailVisits2();
