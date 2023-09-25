@@ -141,19 +141,19 @@ function tailVisits() {
 
   const fieldMerge = field.flat();
   const sum = fieldMerge.reduce((acc, cur) => acc + cur, 0);
-    console.log(sum);
+  console.log(sum);
 }
-console.log('Part1 : How many positions does the tail of the rope visit at least once?')
+console.log(
+  "Part1 : How many positions does the tail of the rope visit at least once?"
+);
 tailVisits();
-
-
 
 /*-------------------------------------------Part two------------------------------------------------*/
 
 function tailVisits2() {
   const field = fieldMaker();
-  let startX = -smallX
-  let startY = bigY
+  let startX = -smallX;
+  let startY = bigY;
 
   let knotsX = [
     startX,
@@ -245,7 +245,7 @@ function tailVisits2() {
   console.log(sum);
 }
 
-
-console.log('Part2 : How many positions does the tail of the rope visit at least once?')
+console.log(
+  "Part2 : How many positions does the tail of the rope visit at least once?"
+);
 tailVisits2();
-
