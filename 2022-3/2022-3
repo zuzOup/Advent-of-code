@@ -1,0 +1,147 @@
+const { readFileSync } = require("fs");
+let arr = [];
+
+function syncReadFile(filename) {
+  const contents = readFileSync(filename, "utf-8");
+  arr = contents.split(/\r?\n/);
+  return arr;
+}
+
+syncReadFile("./2022-3-input.txt");
+
+//console.log(arr)
+
+let arr2 = [];
+const arr3 = [];
+
+function stringtoArr(arr) {
+  for (let i = 0; i < arr.length; i++) {
+    arr2 = arr[i].split("");
+    arr3.push(arr2);
+  }
+
+  return arr3;
+}
+stringtoArr(arr);
+
+//console.log(arr3)
+//console.log(arr3[0])
+
+const sameLettersButBetter = [];
+
+function halfs(arr3) {
+  for (let i = 0; i < arr3.length; i++) {
+    const howLong = arr3[i].length;
+    const howLongHalf = howLong / 2;
+    const arr3inner = arr3[i]; //
+    let firstHalf = [];
+    let secondHalf = [];
+    let sameLetters = [];
+
+    for (let i = 0; i < howLongHalf; i++) {
+      firstHalf.push(arr3inner[i]);
+    }
+
+    for (let i = howLongHalf; i < howLong; i++) {
+      secondHalf.push(arr3inner[i]);
+    }
+
+    for (let m = 0; m < firstHalf.length; m++) {
+      for (let n = 0; n < secondHalf.length; n++) {
+        if (firstHalf[m] === secondHalf[n] && sameLetters.length === 0) {
+          sameLetters.push(secondHalf[n]);
+        }
+      }
+    }
+    sameLettersButBetter.push(sameLetters);
+  }
+
+  return sameLettersButBetter;
+}
+
+halfs(arr3);
+
+const letters2 = sameLettersButBetter.flat();
+
+//console.log(letters2)
+
+const numbers = [];
+
+for (let i = 0; i < letters2.length; i++) {
+  if (letters2[i].charCodeAt(0) < 95) {
+    let letter = letters2[i].charCodeAt(0) - 38;
+    numbers.push(letter);
+  } else if (letters2[i].charCodeAt(0) > 95) {
+    let letter = letters2[i].charCodeAt(0) - 96;
+    numbers.push(letter);
+  }
+}
+
+//console.log(numbers)
+
+const sum = numbers.reduce((a, b) => a + b);
+
+console.log("3rd day/1st half answer: " + sum);
+
+//console.log(arr3.length);
+let letters2threes = [];
+function threes(arr3) {
+  let arr3one = [];
+  let arr3two = [];
+  let arr3three = [];
+  let samethree = [];
+
+  for (let i = 0; i < 300; i += 3) {
+    arr3one = arr3[i];
+    arr3two = arr3[i + 1];
+    arr3three = arr3[i + 2];
+    samethree = [];
+    //console.log(arr3one)
+    for (let j = 0; j < arr3one.length; j++) {
+      for (let k = 0; k < arr3two.length; k++) {
+        for (let m = 0; m < arr3three.length; m++) {
+          if (
+            arr3one[j] === arr3two[k] &&
+            arr3one[j] === arr3three[m] &&
+            arr3two[k] === arr3three[m] &&
+            samethree.length === 0
+          ) {
+            samethree.push(arr3one[j]);
+            //console.log(samethree);
+          }
+        }
+      }
+    }
+    letters2threes.push(samethree);
+    //console.log(arr3one);
+    //console.log(arr3two);
+    //console.log(arr3three);
+  }
+  return letters2threes;
+}
+
+threes(arr3);
+
+//console.log(threes(arr3))
+
+const letters2two = letters2threes.flat();
+
+//console.log(letters2two)
+
+const numbersThrees = [];
+
+for (let i = 0; i < letters2two.length; i++) {
+  if (letters2two[i].charCodeAt(0) < 95) {
+    let letter = letters2two[i].charCodeAt(0) - 38;
+    numbersThrees.push(letter);
+  } else if (letters2two[i].charCodeAt(0) > 95) {
+    let letter = letters2two[i].charCodeAt(0) - 96;
+    numbersThrees.push(letter);
+  }
+}
+
+//console.log(numbers)
+
+const sum3 = numbersThrees.reduce((a, b) => a + b);
+
+console.log("3rd day/2st half answer: " + sum3);
