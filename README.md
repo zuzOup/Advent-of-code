@@ -7,7 +7,7 @@ My solutions to the https://adventofcode.com/ puzzles - in JavaScript.
 - **2** ** &nbsp;&nbsp;&nbsp;&nbsp; Completed 12/2022, updated 10/2023
 - **3** ** &nbsp;&nbsp;&nbsp;&nbsp; Completed 12/2022, updated 10/2023
 - **4** ** &nbsp;&nbsp;&nbsp;&nbsp; Completed 1/2023, updated 10/2023
-- **5** **
+- **5** ** &nbsp;&nbsp;&nbsp;&nbsp; Completed 1/2023 (but just the second part? I can't find the code for the first part..)
 - **6** **
 - **8** **
 - **9** **
