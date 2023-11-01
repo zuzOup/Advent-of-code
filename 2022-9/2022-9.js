@@ -1,5 +1,5 @@
 const { readFileSync } = require("fs");
-let arrInput = readFileSync("./2022_day_9_input.txt", "utf-8").split(/\r?\n/);
+let arrInput = readFileSync("./2022-9-input.txt", "utf-8").split(/\r?\n/);
 
 //Separate each direction into direction + lenght
 
