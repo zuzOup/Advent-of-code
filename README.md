@@ -10,6 +10,7 @@ My solutions to the https://adventofcode.com/ puzzles - in JavaScript.
 - **4** ** &nbsp;&nbsp;&nbsp;&nbsp; Completed 1/2023, updated 10/2023
 - **5** ** &nbsp;&nbsp;&nbsp;&nbsp; Completed 1/2023 (but just the second part? I can't find the code for the first part...), updated 10/2023 (both parts)
 - **6** **
+- **7** * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Completed 10/2023
 - **8** **
 - **9** **
 - **10** **
