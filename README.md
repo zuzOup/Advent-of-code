@@ -1,7 +1,8 @@
 # My Advent of code solutions
 
 My solutions to the https://adventofcode.com/ puzzles - in JavaScript. 
-
+### 2023
+- **1** ** &nbsp;&nbsp;&nbsp;&nbsp; Completed 12/2023
 
 ### 2022
 - **1** ** &nbsp;&nbsp;&nbsp;&nbsp; Completed 12/2022, updated 10/2023
