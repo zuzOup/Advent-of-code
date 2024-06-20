@@ -15,8 +15,8 @@ My solutions to the https://adventofcode.com/ puzzles - in JavaScript.
 - **7** * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Completed 10/2023 
 - **8** **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Completed 3/2023 
 - **9** **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Completed 6/2023 
-- **10** ** &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Completed 3/2023
-- **11** ** &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Completed 3/2023
+- **10** ** &nbsp;&nbsp;&nbsp;&nbsp; Completed 3/2023
+- **11** ** &nbsp;&nbsp;&nbsp;&nbsp; Completed 3/2023
 
 ### 2021
 
