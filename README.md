@@ -3,6 +3,7 @@
 My solutions to the https://adventofcode.com/ puzzles - in JavaScript. 
 ### 2024
 - **1** ** &nbsp;&nbsp;&nbsp;&nbsp; Completed 1/12/2024
+- **2** ** &nbsp;&nbsp;&nbsp;&nbsp; Completed 2/12/2024
 
 
 ### 2023
