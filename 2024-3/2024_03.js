@@ -8,9 +8,7 @@ function answer1(string) {
     .split("mul(")
     .map((x) => x.split(")")[0])
     .map((x) => x.split(","))
-    .filter((x) => {
-      return x.length === 2 && Number(x[0]) <= 999 && Number(x[1] <= 999); // I probably should've added >0 / >=0 to cover all edge cases, but it worked without it for both parts so....
-    })
+    .filter((x) => x.length === 2 && Number(x[0]) <= 999 && Number(x[1] <= 999)) // I probably should've added >0 / >=0 to cover all edge cases, but it worked without it for both parts so....
     .map((x) => Number(x[0]) * Number(x[1]))
     .reduce((acc, cur) => acc + cur, 0);
 }
