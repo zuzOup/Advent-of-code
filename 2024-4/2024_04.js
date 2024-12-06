@@ -1,5 +1,5 @@
 const { readFileSync } = require("fs");
-let input = readFileSync(/*"test.txt" */ "input2024_04.txt", "utf-8")
+let input = readFileSync("input2024_04.txt", "utf-8")
   .split(/\r?\n/)
   .map((x) => x.split(""));
 
@@ -63,15 +63,13 @@ function answer1(input) {
     for (let x = 0; x <= col; x++) {
       if (input[y][x] === "X") {
         Object.entries(coordinates).forEach((d) => {
-          if (
-            bounds(d[1](x, y), row, col) &&
-            input[d[1](x, y)[1]][d[1](x, y)[0]] === "M"
-          ) {
-            const direction = d[0];
-            const coorM = coordinates[direction](d[1](x, y)[0], d[1](x, y)[1]);
+          const xy = d[1](x, y);
+
+          if (bounds(xy, row, col) && input[xy[1]][xy[0]] === "M") {
+            const coorM = coordinates[d[0]](xy[0], xy[1]);
 
             if (bounds(coorM, row, col) && input[coorM[1]][coorM[0]] === "A") {
-              const coorA = coordinates[direction](coorM[0], coorM[1]);
+              const coorA = coordinates[d[0]](coorM[0], coorM[1]);
 
               if (bounds(coorA, row, col) && input[coorA[1]][coorA[0]] === "S") {
                 count++;
@@ -91,17 +89,18 @@ function answer2(input) {
   let count = 0;
   for (let y = 0; y <= row; y++) {
     for (let x = 0; x <= col; x++) {
-      if (input[y][x] === "A") {
-        if (Object.entries(cross).every((c) => bounds(c[1](x, y), row, col))) {
-          const MS = pairs.map((p) => {
+      if (
+        input[y][x] === "A" &&
+        Object.entries(cross).every((c) => bounds(c[1](x, y), row, col)) &&
+        pairs
+          .map((p) => {
             return p.map((fce) => input[fce(x, y)[1]][fce(x, y)[0]]).join("");
-          });
-
-          if (MS.every((fr) => fr === "MS" || fr === "SM")) {
-            count++;
-          }
-        }
-      }
+          })
+          .reduce((acc, cur) => {
+            return cur !== "MS" && cur !== "SM" ? false : acc;
+          }, true)
+      )
+        count++;
     }
   }
   return count;
