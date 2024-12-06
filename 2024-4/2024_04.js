@@ -7,7 +7,7 @@ const row = input.length - 1;
 const col = input[0].length - 1;
 /*input ... [["a","b","c"],[...]]*/
 
-const coordinates = {
+const coor = {
   up: function (x, y) {
     return [x, y - 1];
   },
@@ -42,15 +42,15 @@ const coordinates = {
 };
 
 const cross = {
-  upright: coordinates.upright,
-  downleft: coordinates.downleft,
-  downright: coordinates.downright,
-  upleft: coordinates.upleft,
+  upright: coor.upright,
+  downleft: coor.downleft,
+  downright: coor.downright,
+  upleft: coor.upleft,
 };
 
 const pairs = [
-  [coordinates.upright, coordinates.downleft],
-  [coordinates.downright, coordinates.upleft],
+  [coor.upright, coor.downleft],
+  [coor.downright, coor.upleft],
 ];
 
 const bounds = (xy, row, col) => {
@@ -62,14 +62,14 @@ function answer1(input) {
   for (let y = 0; y <= row; y++) {
     for (let x = 0; x <= col; x++) {
       if (input[y][x] === "X") {
-        Object.entries(coordinates).forEach((d) => {
+        Object.entries(coor).forEach((d) => {
           const xy = d[1](x, y);
 
           if (bounds(xy, row, col) && input[xy[1]][xy[0]] === "M") {
-            const coorM = coordinates[d[0]](xy[0], xy[1]);
+            const coorM = coor[d[0]](xy[0], xy[1]);
 
             if (bounds(coorM, row, col) && input[coorM[1]][coorM[0]] === "A") {
-              const coorA = coordinates[d[0]](coorM[0], coorM[1]);
+              const coorA = coor[d[0]](coorM[0], coorM[1]);
 
               if (bounds(coorA, row, col) && input[coorA[1]][coorA[0]] === "S") {
                 count++;
