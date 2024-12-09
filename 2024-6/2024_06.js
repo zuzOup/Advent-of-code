@@ -1,109 +1,112 @@
 const { readFileSync } = require("fs");
-let input = readFileSync("input2024_04.txt", "utf-8")
+let input = readFileSync("input2024_06.txt", "utf-8") //delete extra empty rows from .txt file
   .split(/\r?\n/)
   .map((x) => x.split(""));
+// let input = readFileSync("test2024_06.txt", "utf-8")
+//   .split(/\r?\n/)
+//   .map((x) => x.split(""));
 
-const row = input.length - 1;
-const col = input[0].length - 1;
-/*input ... [["a","b","c"],[...]]*/
+const start = input.reduce((acc, cur, i) => {
+  if (cur.includes("^")) {
+    return [cur.indexOf("^"), i];
+  }
+  return acc;
+}, []);
 
 const coor = {
-  up: function (x, y) {
+  0: function (x, y) {
+    //up
     return [x, y - 1];
   },
 
-  upright: function (x, y) {
-    return [x + 1, y - 1];
-  },
-
-  right: function (x, y) {
+  1: function (x, y) {
+    //right
     return [x + 1, y];
   },
 
-  downright: function (x, y) {
-    return [x + 1, y + 1];
-  },
-
-  down: function (x, y) {
+  2: function (x, y) {
+    //down
     return [x, y + 1];
   },
 
-  downleft: function (x, y) {
-    return [x - 1, y + 1];
-  },
-
-  left: function (x, y) {
+  3: function (x, y) {
+    //left
     return [x - 1, y];
   },
-
-  upleft: function (x, y) {
-    return [x - 1, y - 1];
-  },
 };
 
-const cross = {
-  upright: coor.upright,
-  downleft: coor.downleft,
-  downright: coor.downright,
-  upleft: coor.upleft,
-};
+/*------------------------- PART 1 ---------------------------*/
 
-const pairs = [
-  [coor.upright, coor.downleft],
-  [coor.downright, coor.upleft],
-];
+function answer1(input, start) {
+  let field = JSON.parse(JSON.stringify(input));
 
-const bounds = (xy, row, col) => {
-  return xy[0] >= 0 && xy[1] >= 0 && xy[0] <= col && xy[1] <= row;
-};
+  let X = start[0];
+  let Y = start[1];
+  let dir = 0;
 
-function answer1(input) {
+  do {
+    if (field[coor[dir](X, Y)[1]][coor[dir](X, Y)[0]] !== "#") {
+      field[Y][X] = "X";
+
+      X = coor[dir](X, Y)[0];
+      Y = coor[dir](X, Y)[1];
+    } else {
+      dir = (dir + 1) % 4;
+    }
+  } while (
+    !coor[dir](X, Y).includes(-1) &&
+    !coor[dir](X, Y).includes(input[0].length) &&
+    !coor[dir](X, Y).includes(input.length)
+  );
+
+  return (
+    field.reduce((acc, cur) => {
+      return acc + cur.filter((x) => x === "X").length;
+    }, 0) + 1
+  );
+}
+
+console.log("Answer 1:" + answer1(input, start));
+
+/*------------------------- PART 2 ---------------------------*/
+
+// Note, this is very ugly and very slow. instead of being smart, it's hard coded to break from the infinite loop after it runs 10000 times (6000 also works, 5000 does not) -> than it counts how many times it head to break out of it....
+
+function answer2(input, start) {
   let count = 0;
-  for (let y = 0; y <= row; y++) {
-    for (let x = 0; x <= col; x++) {
-      if (input[y][x] === "X") {
-        Object.entries(coor).forEach((d) => {
-          const xy = d[1](x, y);
 
-          if (bounds(xy, row, col) && input[xy[1]][xy[0]] === "M") {
-            const coorM = coor[d[0]](xy[0], xy[1]);
+  for (let i = 0; i < input.length; i++) {
+    for (let j = 0; j < input[i].length; j++) {
+      if ((j === start[0] && i === start[1]) || input[i][j] === "#") continue;
 
-            if (bounds(coorM, row, col) && input[coorM[1]][coorM[0]] === "A") {
-              const coorA = coor[d[0]](coorM[0], coorM[1]);
+      let field = JSON.parse(JSON.stringify(input));
+      field[i][j] = "#";
 
-              if (bounds(coorA, row, col) && input[coorA[1]][coorA[0]] === "S") {
-                count++;
-              }
-            }
+      let X = start[0];
+      let Y = start[1];
+      let dir = 0;
+      let loop = 0;
+
+      do {
+        if (field[coor[dir](X, Y)[1]][coor[dir](X, Y)[0]] !== "#") {
+          X = coor[dir](X, Y)[0];
+          Y = coor[dir](X, Y)[1];
+          loop++;
+          if (loop === 6000) {
+            count++;
+            break;
           }
-        });
-      }
-    }
-  }
-
-  return count;
-}
-console.log("Answer 1: " + answer1(input));
-
-function answer2(input) {
-  let count = 0;
-  for (let y = 0; y <= row; y++) {
-    for (let x = 0; x <= col; x++) {
-      if (
-        input[y][x] === "A" &&
-        Object.entries(cross).every((c) => bounds(c[1](x, y), row, col)) &&
-        pairs
-          .map((p) => {
-            return p.map((fce) => input[fce(x, y)[1]][fce(x, y)[0]]).join("");
-          })
-          .reduce((acc, cur) => {
-            return cur !== "MS" && cur !== "SM" ? false : acc;
-          }, true)
-      )
-        count++;
+        } else {
+          dir = (dir + 1) % 4;
+        }
+      } while (
+        !coor[dir](X, Y).includes(-1) &&
+        !coor[dir](X, Y).includes(input[0].length) &&
+        !coor[dir](X, Y).includes(input.length)
+      );
     }
   }
   return count;
 }
 
-console.log("Answer 2: " + answer2(input));
+console.log("Answer 2:" + answer2(input, start));
