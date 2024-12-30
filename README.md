@@ -35,10 +35,10 @@ My solutions to the https://adventofcode.com/ puzzles - in JavaScript.
 
 ### 2021
 
-- **1** \*\*
-- **2** \*\*
-- **3** \*\*
-- **4** \*\*
-- **5** \*
+- **1** \*\* Completed 2/2023
+- **2** \*\* Completed 2/2023
+- **3** \*\* Completed 3/2023
+- **4** \*\* Completed 3/2023
+- **5** \* Completed 3/2023
 
 <em>PS: In late 2022/early 2023 I was a complete baby programmer, and the code very much reflects that. As I was uploading the solutions almost a year after I wrote them, I realized I just had to remake (at least some of) them, thus the updated versions :) </em>
