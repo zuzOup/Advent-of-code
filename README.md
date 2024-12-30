@@ -41,4 +41,4 @@ My solutions to the https://adventofcode.com/ puzzles - in JavaScript.
 - **4** \*\* Completed 3/2023
 - **5** \* Completed 3/2023
 
-<em>PS: In late 2022/early 2023 I was very much a baby programmer, and the code reflects that. As I was uploading the solutions almost a year after I wrote them, I realized I just had to remake (at least some of) them, thus the updated versions :) </em>
+<em>Back in late 2022/early 2023, I was just a baby programmer taking my first wobbly steps into the world of code, and oh boy, does it show! Fast forward almost a year, and as I was finally uploading the solutions to GitHub, I couldn’t resist giving (at least some of) them a glow-up — because everyone deserves a redemption arc, even my ugly code :) </em>
